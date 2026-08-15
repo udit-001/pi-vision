@@ -1,7 +1,7 @@
 {
   "name": "pi-vision",
   "version": "0.1.0",
-  "description": "Vision for text-only pi models \u2014 delegates visual tasks to a vision-capable model",
+  "description": "Vision for text-only pi models",
   "type": "module",
   "license": "MIT",
   "keywords": [
