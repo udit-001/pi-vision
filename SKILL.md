@@ -61,15 +61,33 @@ the shape of the response template.
 
 ## Step 3. Gather image paths
 
+**Resolve every image path first.** A path you were given is the fastest
+answer; a hunt is the last resort.
+
+**Path rules, in order:**
+
+1. **Use the path you were given.** User paths, `@mention` paths, and paths in
+tool results are authoritative — delegate with them as-is. Do not reformat,
+copy, or move the file.
+2. **Verify before delegating.** One directory listing (`ls -la <path>`)
+confirms the file exists.
+3. **When the path is missing, search downward.** Bound the search to the
+working directory or the mention's parent, filtered by name (e.g.
+`find . -iname "<name>"`). One bounded search, then report the miss. A search
+that reaches the filesystem root is too wide — stop at the working directory.
+
 | Source | How to get the path |
 | ------ | ------------------- |
-| User-provided | Use the path the user gave. |
+| User-provided | Use the path the user gave; resolve against the working directory. |
 | User-dropped image | Parse `[vision:dropped-image]` JSON, use `path`. |
 | chrome-devtools MCP | `take_screenshot({ filePath: "/tmp/shot.png" })` |
 | Playwright MCP | `take_screenshot({ filename: "shot.png" })` |
 | `read` on an image | Delegate with the file path you read from. |
 
 Assign each image a contract ID (`current`, `before`, `after`, `reference`, `detail`).
+
+**Completion criterion:** every image path is verified on disk — by `ls` or by a
+search bounded to the working directory — before you call `vision`.
 
 ## Step 4. Delegate
 
