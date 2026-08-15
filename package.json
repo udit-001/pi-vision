@@ -1,0 +1,23 @@
+{
+  "name": "pi-vision",
+  "version": "0.1.0",
+  "description": "Give text-only pi orchestrators eyes: delegate visual tasks to a vision-capable model",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "pi-package",
+    "pi-extension",
+    "vision"
+  ],
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*",
+    "@sinclair/typebox": "*"
+  }
+}
